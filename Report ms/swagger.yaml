@@ -1,0 +1,107 @@
+swagger: "2.0"
+info:
+  description: "A sample code for feedback management system"
+  version: "1.0.0"
+  title: "Feedback Management System"
+basePath: "/fms"
+paths:
+  /report:
+     get:
+      tags:
+      - "Report Details"
+      summary: "Get all report details"
+      description: "All the reports are displayed"
+      operationId: "allReport"
+      produces:
+      - "application/xml"
+      - "application/json"
+      responses:
+        200:
+          description: "Successful Operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Report"
+        400:
+          description: "Invalid status value"
+        404:
+          description: "Page not found"
+     post:
+      tags:
+      - "Report Details"
+      summary: "filter event"
+      description: ""
+      operationId: filterEvent"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Report that appears after filter"
+        required: true
+        schema:
+          $ref: "#/definitions/Report"
+      responses:
+        200:
+          description: "Successful Operation"
+          schema:
+              $ref: "#/definitions/Report"
+        400:
+          description: "Invalid status value"
+        404:
+          description: "Page not found"
+definitions:
+  Report:
+    type: "object"
+    required:
+    - "EventId"
+    - "Month"
+    - "BaseLocation"
+    - "CouncilName"
+    - "BeneficiaryName"
+    - "EventName"
+    - "EventDate"
+    - "BusinessUnit"
+    - "Status"
+    - "VenueAddress"
+    - "TotalVolunteers"
+    - "TotalVolunteerHours"
+    - "TotalTravelHours"
+    properties:
+      EventId:
+        type: "string"
+      Month:
+        type: "string"
+        example: "January"
+      BaseLocation:
+        type: "string"
+        example: "United Kingdom"
+      CouncilName:
+       type: "string"
+      BeneficiaryName:
+        type: "string"
+      EventName:
+        type: "string"
+      EventDate:
+        type: "string"
+        format: date-time
+      BusinessUnit:
+        type: "string"
+      Status:
+        type: "string"
+      VenueAddress:
+        type: "string"
+      TotalVolunteers:
+        type: "integer"
+      TotalVolunteerHours:
+        type: "integer"
+      TotalTravelHours:
+         type: "integer"
+    xml:
+      name: "Report"
+      
+  
